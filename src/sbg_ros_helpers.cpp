@@ -29,7 +29,7 @@ float sbg::helpers::wrapAngle360(float angle_deg)
 {
   float wrapped_angle_deg = angle_deg;
 
-  if ( (wrapped_angle_deg < -360.0f) || (wrapped_angle_deg > 360.0f) )
+  if ( (wrapped_angle_deg < -360.0f) || (wrapped_angle_deg >= 360.0f) )
   {
     wrapped_angle_deg = fmodf(wrapped_angle_deg, 360.0f);
   }
