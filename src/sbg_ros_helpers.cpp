@@ -9,14 +9,17 @@
 
 float sbg::helpers::wrapAnglePi(float angle_rad)
 {
-  if (angle_rad > SBG_PI_F)
+  if ((angle_rad > SBG_PI_F) || (angle_rad < -SBG_PI_F))
   {
-    return (SBG_PI_F * 2.0f - fmodf(angle_rad, SBG_PI_F * 2.0f));
-  }
+    const float two_pi = 2.0f * SBG_PI_F;
+    angle_rad = fmodf(angle_rad + SBG_PI_F, two_pi);
 
-  if (angle_rad < -SBG_PI_F)
-  {
-    return (SBG_PI_F * 2.0f + fmodf(angle_rad, SBG_PI_F * 2.0f));
+    if (angle_rad < 0.0f)
+    {
+      angle_rad += two_pi;
+    }
+
+    angle_rad -= SBG_PI_F;
   }
 
   return angle_rad;
